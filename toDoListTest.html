@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List - JS DOM</title>
+
+    <link rel="stylesheet" href="./ToDoList.css">
+
+    <script src="https://kit.fontawesome.com/164bd13fb2.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="mainDiv">
+
+        <div class="childDiv">
+
+            <h1>To Do List App</h1>
+
+            <div class="addUpdateContainer">
+
+                <button class="clearStorageBtn">Clear Storage</button>
+
+                <input type="text" class="addListTxt" placeholder="Add or Update Your List">
+
+                <button class="addListbtn">Add</button>
+
+                <div class="extraDummyDiv"></div>
+
+            </div>
+
+            <div class="listContainer"></div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+
+    var clearStorageBtn = document.getElementsByClassName('clearStorageBtn')[0];
+    var listBox = document.getElementsByClassName('addListTxt')[0];
+    var addBtn = document.getElementsByClassName('addListbtn')[0];
+    var listContainer = document.getElementsByClassName('listContainer')[0];
+    var addUpdateContainer = document.getElementsByClassName('addUpdateContainer')[0]
+    var dummyDiv = document.getElementsByClassName('extraDummyDiv')[0];
+
+    clearStorageBtn.onclick = clearLocalStorage => {
+        localStorage.clear();
+        localStorage.setItem('data', JSON.stringify([]));
+        alert('Local Storage Cleared Successfully');
+        window.location.reload();
+    }
+
+    function clearFields() {
+        listBox.value = '';
+    }
+
+    const addDataBtn = () => {
+        var addValue = listBox.value;
+
+        var dataObj = { addValue };
+
+        var getData = JSON.parse(localStorage.getItem('data'));
+
+        if (!getData) {
+            localStorage.setItem('data', JSON.stringify([dataObj]));
+        }
+        else {
+            getData.push(dataObj);
+            localStorage.setItem('data', JSON.stringify(getData));
+        }
+        clearFields();
+        alert('Data is entered successfully');
+        window.location.reload();
+    }
+
+    addBtn.addEventListener('click', addDataBtn);
+
+    var getData = JSON.parse(localStorage.getItem('data'));
+
+    if (getData) {
+        getData.map((CurrentValue, index, arrayObject) => {
+            let childDiv = document.createElement('div');
+            childDiv.className = 'createDiv'
+            listContainer.appendChild(childDiv);
+
+            let dataValue = document.createElement('p');
+            dataValue.className = 'listPara';
+            dataValue.innerText = CurrentValue.addValue;
+            childDiv.appendChild(dataValue);
+
+            let deleteBtn = document.createElement('button');
+            deleteBtn.className = 'deleteBtn';
+            deleteBtn.innerText = 'Delete';
+            childDiv.appendChild(deleteBtn)
+
+            deleteBtn.onclick = () => {
+                getData.splice(index, 1);
+                localStorage.setItem('data', JSON.stringify(getData));
+                alert('Selected data is deleted successfully');
+                window.location.reload();
+            }
+
+            let editBtn = document.createElement('button');
+            editBtn.className = 'deleteBtn';
+            editBtn.innerText = 'Edit';
+            childDiv.appendChild(editBtn);
+
+            editBtn.onclick = () => {
+                listBox.value = arrayObject[index].addValue;
+                listBox.focus();
+                deleteBtn.disabled = true;
+                clearStorageBtn.disabled = true;
+                dummyDiv.style.display = 'none'
+
+                let updateBtn = document.createElement('button');
+                updateBtn.className = 'addListbtn';
+                updateBtn.innerText = 'Update'
+                addUpdateContainer.appendChild(updateBtn);
+
+                updateBtn.onclick = (e) => {
+                    var dataValue = listBox.value;
+
+                    if (dataValue) {
+                        arrayObject[index].addValue = dataValue;
+                        localStorage.setItem('data', JSON.stringify(arrayObject))
+                        deleteBtn.disabled = false;
+                        clearStorageBtn.disabled = false
+                        alert('Data is updated successfully');
+                        window.location.reload();
+                    }
+                    else {
+                        alert('Please fill the required field')
+                    }
+                }
+            }
+
+        })
+        if (!getData.length) {
+            listContainer.innerHTML = `<h2 class = 'heading1'>There is no data in local storage</h2>`
+        }
+    }
+    else {
+        listContainer.innerHTML = `<h2 class = 'heading1'>There is no data in local storage</h2>`
+    }
+
+</script>
+
+</html>

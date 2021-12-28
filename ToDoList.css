@@ -1,0 +1,177 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    font-family: 'Josefin Sans', sans-serif;   
+}
+
+.mainDiv{
+    width: 100%;
+    height: 100vh;
+    background-color: #1C5C93;
+    padding-top: 3%;
+    box-sizing: border-box;
+}
+
+.childDiv{
+    width: 80%;
+    height: 93%;
+    background-color: #5C768D;
+    border-radius: 10px;
+    margin: auto;
+    padding-top: 1px;
+    box-sizing: border-box;
+}
+
+.childDiv h1{
+    width: fit-content;
+    margin: auto;
+    font-size: 6vh;
+    color: white;
+    margin-top: 2%;
+    font-weight: 500;
+    margin-bottom: 1.5%;
+}
+
+.addUpdateContainer{
+    width: 90%;
+    height: 10vh;
+    border-radius: 10px;
+    background-color: #1C5C93;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0% 1%;
+    box-sizing: border-box;
+}
+
+
+.addUpdateContainer button:hover{
+    background-color: #292929;
+}
+
+.clearStorageBtn{
+    width: 110px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #5C768D;
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.addListTxt{
+    width: 40vw;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 2%;
+    padding-top: 2px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background-color: #5C768D;
+    color: white;
+    font-size: 2.3vh;
+    font-weight: 400;
+}
+
+.addListTxt::placeholder{
+    color: white;
+    opacity: 0.7;
+}
+
+.addListbtn{
+    width: 110px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #5C768D;
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.updateBtn{
+    width: 110px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #5C768D;
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.extraDummyDiv{
+    width: 110px;
+    height: 40px;
+}
+
+.listContainer{
+    width: 90%;
+    height: 58vh;
+    background-color: #1C5C93;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 2%;
+    overflow-y: scroll;
+    padding-top: 1px;
+    padding-bottom: 1%;
+    box-sizing: border-box;
+}
+
+.createDiv{
+    width: 95%;
+    height: 60px;
+    background-color: #5C768D;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1%;
+    padding: 0% 1.5%;
+    box-sizing: border-box;
+}
+
+.listPara{
+    width: 65%;
+    height: auto;
+    word-break: break-all;
+    color: white;
+}
+
+.deleteBtn{
+    width: 110px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #1C5C93;
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.deleteBtn:hover{
+    background-color: #292929;
+}
+
+.updateBtn:disabled{
+    background-color: gray;
+    transition-duration: 0.5s;
+}
+
+.updateBtn:disabled:hover{
+    background-color: gray;
+}
+
+.heading1{
+    width: fit-content;
+    margin: auto;
+    font-size: 4vh;
+    color: white;
+    font-weight: 500;
+    margin-top: 17%;
+}
